@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {  useState } from 'react'
 import { Link } from 'react-router-dom'
 import landingImg from '../assets/landingImg.jpg'
 import ProjectCard from '../Components/ProjectCard'
@@ -8,7 +8,8 @@ import Header from '../Components/Header'
 
 
 const Home = () => {
-  return (
+    
+    return (
     <>
     <Header/>
     <div style={{minHeight:'100vh'}} className='d-flex justity-content-center align-items-center rounded shadow w-100'>
@@ -19,7 +20,11 @@ const Home = () => {
                     <p style={{textAlign:'justify'}}>
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus nostrum aspernatur numquam ut alias repellat distinctio voluptas quos excepturi. Quae explicabo at ipsa rerum officiis? Modi omnis accusamus laboriosam repudiandae.
                     </p>
-                    <Link to={"/login"} className="btn btn-warning">START TO EXPLORE</Link>
+                    {
+                        sessionStorage.getItem("token")?
+                        <Link to={"/dashboard"} className="btn btn-warning">MANAGE YOUR PROJECTS</Link>
+                        :<Link to={"/login"} className="btn btn-warning">START TO EXPLORE</Link>
+                        }
                 </div>
                 <div className='col-lg-6'>
                     <img className='img-fluid' src={landingImg} alt="landing" />
